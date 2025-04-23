@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuraSwarm - Neuromorphic AI Compute Sharing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #000000;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 28px;
+            color: #4B0082;
+        }
+
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 8px #301934);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .nav-links a {
+            color: #9370DB;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFFFFF;
+        }
+
+        /* General Section Styles */
+        section {
+            padding: 80px 50px;
+            text-align: center;
+            background: #000000;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 48px;
+            color: #FFFFFF;
+            margin-bottom: 60px;
+        }
+
+        p {
+            font-size: 16px;
+            font-family: 'Fira Code', monospace;
+            color: #FFFFFF;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Glassmorphic Cards */
+        .card {
+            background: #4B0082;
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px #9370DB;
+        }
+
+        .card svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 20px;
+            fill: #00D4FF;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            color: #FFFFFF;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            max-width: 300px;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: #000000;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        /* Particle Background */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Code Snippet */
+        .code-snippet {
+            background: #301934;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-family: 'Fira Code', monospace;
+            font-size: 16px;
+            color: #00D4FF;
+        }
+
+        /* Quote */
+        .quote {
+            font-size: 20px;
+            font-style: italic;
+            font-family: 'Fira Code', monospace;
+            color: #FFFFFF;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 50px;
+            background: #000000;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #4B0082;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer .badge {
+            width: 150px;
+            height: 40px;
+            background: linear-gradient(45deg, #4B0082, #9370DB);
+            border-radius: 15px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 0 30px #301934;
+        }
+
+        .footer p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+
+        /* Brain Graphic */
+        .brain-graphic {
+            width: 400px;
+            height: 400px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        /* Infographic */
+        .network-infographic {
+            width: 600px;
+            height: 400px;
+            margin: 30px auto;
+        }
+
+        .network-infographic .fade {
+            animation: fade 3s infinite alternate;
+        }
+
+        @keyframes fade {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.8; }
+        }
+
+        /* Globe */
+        .globe {
+            width: 500px;
+            height: 500px;
+            margin: 30px auto;
+        }
+
+        .globe .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons svg {
+            width: 40px;
+            height: 40px;
+            fill: #9370DB;
+            transition: filter 0.3s;
+        }
+
+        .social-icons svg:hover {
+            filter: drop-shadow(0 0 10px #FFFFFF);
+        }
+
+        /* Blog Thumbnails */
+        .thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .author {
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px;
+            }
+
+            .nav-links a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#9370DB" stroke-width="3">
+                <circle cx="50" cy="50" r="12" fill="#4B0082" opacity="0.8"/>
+                <circle cx="30" cy="30" r="8" fill="#301934" opacity="0.8"/>
+                <circle cx="70" cy="30" r="8" fill="#301934" opacity="0.8"/>
+                <circle cx="30" cy="70" r="8" fill="#301934" opacity="0.8"/>
+                <circle cx="70" cy="70" r="8" fill="#301934" opacity="0.8"/>
+                <path d="M50 50 L30 30 L70 30 L30 70 L70 70 Z" stroke="#9370DB" opacity="0.5"/>
+            </svg>
+            NEURASWARM
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#ecosystem">Ecosystem</a>
+            <a href="#community">Community</a>
+            <a href="#blog">Blog</a>
+        </div>
+    </nav>
+
+    <!-- Homepage -->
+    <section class="hero" id="home">
+        <canvas id="particles-home"></canvas>
+        <h1>NeuraSwarm: Decentralized Neuromorphic AI Compute</h1>
+        <p>A conceptual platform for sharing neuromorphic compute resources, utilizing spiking neural networks and Web3 for efficient, scalable AI processing.</p>
+    </section>
+
+    <section class="benefits">
+        <h2>Technical Advantages of NeuraSwarm</h2>
+        <div class="grid">
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="#00D4FF"><circle cx="12" cy="12" r="8"/></svg>
+                <h3>Low-Power AI Processing</h3>
+                <p>Neuromorphic computing, inspired by biological neural networks, consumes up to 1000x less energy than traditional GPU-based AI, supporting sustainable edge AI applications.</p>
+            </div>
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="#00D4FF"><path d="M6 12H18M12 6V18"/></svg>
+                <h3>Distributed Compute Network</h3>
+                <p>Web3 architecture enables a decentralized network of compute nodes, eliminating centralized bottlenecks and enhancing scalability for global AI workloads.</p>
+            </div>
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2">
+                    <circle cx="12" cy="6" r="4"/><circle cx="6" cy="18" r="4"/><circle cx="18" cy="18" r="4"/>
+                    <path d="M12 6L6 18L18 18Z"/>
+                </svg>
+                <h3>Edge AI Optimization</h3>
+                <p>Spiking neural networks process data in real-time, enabling low-latency AI for IoT devices, autonomous systems, and other edge computing scenarios.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ecosystem-preview">
+        <h2>Conceptual Platform Overview</h2>
+        <div class="code-snippet"><code>neuraswarm.deploy_model(model='SNN', chip='Loihi')</code></div>
+        <p class="quote">“Neuromorphic AI offers unparalleled efficiency, paving the way for decentralized computing paradigms.” — NeuraSwarm Conceptual Team</p>
+    </section>
+
+    <!-- About Page -->
+    <section class="mission" id="about">
+        <img src="brain.png" alt="Neuromorphic Brain" class="brain-graphic">
+        <h2>Mission of NeuraSwarm</h2>
+        <p>NeuraSwarm conceptualizes a decentralized platform that integrates neuromorphic computing with Web3 principles, enabling efficient AI processing through spiking neural networks, reducing energy demands and enhancing accessibility.</p>
+    </section>
+
+    <section class="vision">
+        <h2>Vision for AI Compute</h2>
+        <div class="network-infographic">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#9370DB" stroke-width="2">
+                <circle cx="50" cy="50" r="10" opacity="0.8" class="fade"/>
+                <circle cx="30" cy="30" r="5" opacity="0.8" class="fade"/>
+                <circle cx="70" cy="30" r="5" opacity="0.8" class="fade"/>
+                <circle cx="30" cy="70" r="5" opacity="0.8" class="fade"/>
+                <circle cx="70" cy="70" r="5" opacity="0.8" class="fade"/>
+                <path d="M50 50 L30 30 L70 30 L30 70 L70 70 Z" stroke="#9370DB" opacity="0.5" class="fade"/>
+            </svg>
+        </div>
+        <p>The vision of NeuraSwarm is to redefine AI compute by combining neuromorphic hardware’s energy efficiency with a decentralized Web3 network, supporting scalable, low-latency processing for applications like IoT, robotics, and autonomous systems.</p>
+    </section>
+
+    <!-- Ecosystem Page -->
+    <section class="overview" id="ecosystem">
+        <div class="globe">
+            <svg viewBox="0 0 100 100" fill="#9370DB">
+                <circle cx="50" cy="50" r="20" opacity="0.7" class="pulse"/>
+                <circle cx="30" cy="30" r="10" opacity="0.7" class="pulse"/>
+                <circle cx="70" cy="70" r="10" opacity="0.7" class="pulse"/>
+            </svg>
+        </div>
+        <h2>NeuraSwarm Ecosystem</h2>
+        <p>The NeuraSwarm ecosystem conceptualizes a decentralized network where neuromorphic compute resources are shared, enabling efficient AI processing through spiking neural networks and Web3 infrastructure.</p>
+    </section>
+
+    <section class="components">
+        <h2>Core Technical Components</h2>
+        <div class="grid">
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="#00D4FF"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                <h3>Energy-Efficient Processing</h3>
+                <p>Spiking neural networks, inspired by biological systems, deliver low-power AI computation, ideal for edge devices and sustainable applications.</p>
+            </div>
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="#00D4FF"><path d="M6 12H18M12 6V18"/></svg>
+                <h3>Decentralized Infrastructure</h3>
+                <p>A Web3-based network ensures trustless resource sharing, providing scalability and resilience for global AI compute demands.</p>
+            </div>
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="#00D4FF"><path d="M7 7l3 3-3 3M17 7l-3 3 3 3"/></svg>
+                <h3>Conceptual SDK Framework</h3>
+                <p>A fictional SDK enables developers to integrate neuromorphic AI models with decentralized compute resources, streamlining theoretical workflows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Page -->
+    <section class="community-overview" id="community">
+        <div class="social-icons">
+            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 3c4.97 0 9 4.03 9 9s-4.03 9-9 9-9-4.03-9-9 4.03-9 9-9zm-1.5 12h3v1.5h-3V15zm0-3h3v1.5h-3V12zm0-3h3v1.5h-3V9z"/></svg>
+        </div>
+        <h2>Community Role in Neuromorphic AI</h2>
+        <p>A theoretical community of AI researchers, blockchain developers, and neuromorphic computing experts fosters innovation in decentralized compute sharing by sharing knowledge and resources.</p>
+    </section>
+
+    <section class="community-contributions">
+        <h2>Community Contributions to AI Compute</h2>
+        <div class="grid">
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="#00D4FF"><circle cx="12" cy="12" r="4"/><circle cx="6" cy="18" r="4"/><circle cx="18" cy="18" r="4"/></svg>
+                <h3>Knowledge Sharing</h3>
+                <p>Collaboration among experts drives advancements in spiking neural networks, optimizing algorithms for energy-efficient AI processing.</p>
+            </div>
+            <div class="card">
+                <svg viewBox="0 0 24 24" fill="#00D4FF"><path d="M7 7l3 3-3 3M17 7l-3 3 3 3"/></svg>
+                <h3>Code Development</h3>
+                <p>A conceptual open-source framework supports the development of neuromorphic AI tools, enhancing theoretical accessibility and innovation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Page -->
+    <section class="blog" id="blog">
+        <h2>Technical Insights on Neuromorphic AI</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="neural-network_8_optimized.png" alt="Neural Network" class="thumbnail">
+                <h3>Efficiency of Spiking Neural Networks</h3>
+                <p>Spiking neural networks process data only when triggered, significantly reducing energy consumption compared to traditional AI models, making them ideal for edge computing.</p>
+                <p class="author">NeuraSwarm Conceptual Team</p>
+            </div>
+            <div class="card">
+                <img src="blockchain.jpg" alt="Blockchain" class="thumbnail">
+                <h3>Decentralized AI Compute Networks</h3>
+                <p>Web3 architecture supports decentralized compute sharing, providing fault tolerance and scalability for AI workloads without centralized infrastructure.</p>
+                <p class="author">NeuraSwarm Conceptual Team</p>
+            </div>
+            <div class="card">
+                <img src="edge-device.jpg" alt="Edge Device" class="thumbnail">
+                <h3>Neuromorphic AI for Edge Applications</h3>
+                <p>Low-latency spiking neural networks enable real-time AI processing on edge devices, supporting applications in IoT, robotics, and autonomous vehicles.</p>
+                <p class="author">NeuraSwarm Conceptual Team</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="https://x.com/NeuraSwarm">X</a>
+        <a href="https://discord.gg/NeuraSwarm">Discord</a>
+        <a href="https://github.com/NeuraSwarm">GitHub</a>
+        <div class="badge">Conceptual Web3 AI Platform</div>
+        <p>© 2025 NeuraSwarm. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Particle Animation for Hero Section
+        const canvas = document.getElementById('particles-home');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 4 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.size > 0.2) this.size -= 0.05;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(147, 112, 219, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // Resize Canvas
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
