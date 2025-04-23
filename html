@@ -13,11 +13,13 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+
         body {
             background: #000000;
             color: #FFFFFF;
             overflow-x: hidden;
         }
+
 
         /* Navigation Bar */
         .navbar {
@@ -32,6 +34,7 @@
             z-index: 1000;
         }
 
+
         .logo {
             display: flex;
             align-items: center;
@@ -41,6 +44,7 @@
             color: #4B0082;
         }
 
+
         .logo svg {
             width: 50px;
             height: 50px;
@@ -49,10 +53,12 @@
             animation: pulse 2s infinite;
         }
 
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
+
 
         .nav-links a {
             color: #9370DB;
@@ -62,9 +68,11 @@
             transition: color 0.3s;
         }
 
+
         .nav-links a:hover {
             color: #FFFFFF;
         }
+
 
         /* General Section Styles */
         section {
@@ -74,11 +82,13 @@
             position: relative;
         }
 
+
         h2 {
             font-size: 48px;
             color: #FFFFFF;
             margin-bottom: 60px;
         }
+
 
         p {
             font-size: 16px;
@@ -87,6 +97,7 @@
             max-width: 700px;
             margin: 0 auto;
         }
+
 
         /* Glassmorphic Cards */
         .card {
@@ -97,10 +108,12 @@
             margin: 20px;
         }
 
+
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 20px #9370DB;
         }
+
 
         .card svg {
             width: 40px;
@@ -109,15 +122,18 @@
             fill: #00D4FF;
         }
 
+
         .card h3 {
             font-size: 24px;
             color: #FFFFFF;
             margin-bottom: 15px;
         }
 
+
         .card p {
             max-width: 300px;
         }
+
 
         /* Grid Layouts */
         .grid {
@@ -127,6 +143,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
 
         /* Hero Section */
         .hero {
@@ -140,17 +157,20 @@
             background: #000000;
         }
 
+
         .hero h1 {
             font-size: 60px;
             color: #FFFFFF;
             margin-bottom: 20px;
         }
 
+
         .hero p {
             font-size: 20px;
             max-width: 700px;
             margin-bottom: 30px;
         }
+
 
         /* Particle Background */
         canvas {
@@ -161,6 +181,7 @@
             height: 100%;
             z-index: -1;
         }
+
 
         /* Code Snippet */
         .code-snippet {
@@ -174,6 +195,7 @@
             color: #00D4FF;
         }
 
+
         /* Quote */
         .quote {
             font-size: 20px;
@@ -184,12 +206,14 @@
             margin: 0 auto;
         }
 
+
         /* Footer */
         .footer {
             padding: 40px 50px;
             background: #000000;
             text-align: center;
         }
+
 
         .footer a {
             color: #4B0082;
@@ -199,9 +223,11 @@
             transition: color 0.3s;
         }
 
+
         .footer a:hover {
             color: #FFFFFF;
         }
+
 
         .footer .badge {
             width: 150px;
@@ -219,11 +245,13 @@
             box-shadow: 0 0 30px #301934;
         }
 
+
         .footer p {
             margin-top: 20px;
             font-size: 14px;
             color: #FFFFFF;
         }
+
 
         /* Brain Graphic */
         .brain-graphic {
@@ -233,6 +261,7 @@
             opacity: 0.8;
         }
 
+
         /* Infographic */
         .network-infographic {
             width: 600px;
@@ -240,14 +269,17 @@
             margin: 30px auto;
         }
 
+
         .network-infographic .fade {
             animation: fade 3s infinite alternate;
         }
+
 
         @keyframes fade {
             0% { opacity: 0.3; }
             100% { opacity: 0.8; }
         }
+
 
         /* Globe */
         .globe {
@@ -256,9 +288,11 @@
             margin: 30px auto;
         }
 
+
         .globe .pulse {
             animation: pulse 2s infinite;
         }
+
 
         /* Social Icons */
         .social-icons {
@@ -268,6 +302,7 @@
             margin-bottom: 30px;
         }
 
+
         .social-icons svg {
             width: 40px;
             height: 40px;
@@ -275,9 +310,11 @@
             transition: filter 0.3s;
         }
 
+
         .social-icons svg:hover {
             filter: drop-shadow(0 0 10px #FFFFFF);
         }
+
 
         /* Blog Thumbnails */
         .thumbnail {
@@ -288,11 +325,13 @@
             margin-bottom: 20px;
         }
 
+
         .author {
             font-size: 14px;
             color: #FFFFFF;
             margin-top: 10px;
         }
+
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -300,26 +339,32 @@
                 padding: 15px;
             }
 
+
             .nav-links a {
                 margin-left: 15px;
                 font-size: 14px;
             }
 
+
             section {
                 padding: 60px 20px;
             }
+
 
             h2 {
                 font-size: 36px;
             }
 
+
             .hero h1 {
                 font-size: 48px;
             }
 
+
             .hero p {
                 font-size: 18px;
             }
+
 
             .grid {
                 grid-template-columns: 1fr;
@@ -350,12 +395,14 @@
         </div>
     </nav>
 
+
     <!-- Homepage -->
     <section class="hero" id="home">
         <canvas id="particles-home"></canvas>
         <h1>NeuraSwarm: Decentralized Neuromorphic AI Compute</h1>
         <p>A conceptual platform for sharing neuromorphic compute resources, utilizing spiking neural networks and Web3 for efficient, scalable AI processing.</p>
     </section>
+
 
     <section class="benefits">
         <h2>Technical Advantages of NeuraSwarm</h2>
@@ -381,11 +428,13 @@
         </div>
     </section>
 
+
     <section class="ecosystem-preview">
         <h2>Conceptual Platform Overview</h2>
         <div class="code-snippet"><code>neuraswarm.deploy_model(model='SNN', chip='Loihi')</code></div>
         <p class="quote">“Neuromorphic AI offers unparalleled efficiency, paving the way for decentralized computing paradigms.” — NeuraSwarm Conceptual Team</p>
     </section>
+
 
     <!-- About Page -->
     <section class="mission" id="about">
@@ -393,6 +442,7 @@
         <h2>Mission of NeuraSwarm</h2>
         <p>NeuraSwarm conceptualizes a decentralized platform that integrates neuromorphic computing with Web3 principles, enabling efficient AI processing through spiking neural networks, reducing energy demands and enhancing accessibility.</p>
     </section>
+
 
     <section class="vision">
         <h2>Vision for AI Compute</h2>
@@ -409,6 +459,7 @@
         <p>The vision of NeuraSwarm is to redefine AI compute by combining neuromorphic hardware’s energy efficiency with a decentralized Web3 network, supporting scalable, low-latency processing for applications like IoT, robotics, and autonomous systems.</p>
     </section>
 
+
     <!-- Ecosystem Page -->
     <section class="overview" id="ecosystem">
         <div class="globe">
@@ -421,6 +472,7 @@
         <h2>NeuraSwarm Ecosystem</h2>
         <p>The NeuraSwarm ecosystem conceptualizes a decentralized network where neuromorphic compute resources are shared, enabling efficient AI processing through spiking neural networks and Web3 infrastructure.</p>
     </section>
+
 
     <section class="components">
         <h2>Core Technical Components</h2>
@@ -443,6 +495,7 @@
         </div>
     </section>
 
+
     <!-- Community Page -->
     <section class="community-overview" id="community">
         <div class="social-icons">
@@ -453,6 +506,7 @@
         <h2>Community Role in Neuromorphic AI</h2>
         <p>A theoretical community of AI researchers, blockchain developers, and neuromorphic computing experts fosters innovation in decentralized compute sharing by sharing knowledge and resources.</p>
     </section>
+
 
     <section class="community-contributions">
         <h2>Community Contributions to AI Compute</h2>
@@ -469,6 +523,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Blog Page -->
     <section class="blog" id="blog">
@@ -495,6 +550,7 @@
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="footer">
         <a href="https://x.com/NeuraSwarm">X</a>
@@ -504,6 +560,7 @@
         <p>© 2025 NeuraSwarm. All rights reserved.</p>
     </footer>
 
+
     <script>
         // Particle Animation for Hero Section
         const canvas = document.getElementById('particles-home');
@@ -511,8 +568,10 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+
         const particles = [];
         const particleCount = 50;
+
 
         class Particle {
             constructor() {
@@ -524,15 +583,19 @@
                 this.opacity = Math.random() * 0.5 + 0.3;
             }
 
+
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
+
                 if (this.size > 0.2) this.size -= 0.05;
+
 
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
+
 
             draw() {
                 ctx.fillStyle = `rgba(147, 112, 219, ${this.opacity})`;
@@ -542,11 +605,13 @@
             }
         }
 
+
         function init() {
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
         }
+
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -557,8 +622,10 @@
             requestAnimationFrame(animate);
         }
 
+
         init();
         animate();
+
 
         // Resize Canvas
         window.addEventListener('resize', () => {
@@ -568,3 +635,6 @@
     </script>
 </body>
 </html>
+
+
+
